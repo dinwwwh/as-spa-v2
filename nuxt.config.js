@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'as-spa-v2',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'vi'
     },
     meta: [
       { charset: 'utf-8' },
@@ -44,9 +44,25 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    credentials: true,
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: process.env.PUBLIC_BASE_API_URL,
+      credentials: true,
+    },
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.PRIVATE_BASE_API_URL,
+      credentials: true,
+    },
+  },
 }
