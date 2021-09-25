@@ -12,6 +12,7 @@ export default function ({$toast}, inject){
       type: 'danger',
       title: xss(title) || false,
       message: xss(message),
+      timeout: 3,
     });
   }
 
@@ -20,6 +21,7 @@ export default function ({$toast}, inject){
       type: 'info',
       title: xss(title) || false,
       message: xss(message),
+      timeout: 3,
     });
   }
 
@@ -28,6 +30,7 @@ export default function ({$toast}, inject){
       type: 'warning',
       title: xss(title) || false,
       message: xss(message),
+      timeout: 3,
     });
   }
 
@@ -36,6 +39,7 @@ export default function ({$toast}, inject){
       type: 'success',
       title: xss(title) || false,
       message: xss(message),
+      timeout: 3,
     });
   }
 }
