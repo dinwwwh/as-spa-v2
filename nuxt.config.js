@@ -22,6 +22,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/axios',
+    '~/plugins/check-type',
     '~/plugins/laravel-sanctum.client',
     '~/plugins/vuelidate.client',
     '~/plugins/notification.client',
