@@ -10,30 +10,32 @@ export default function (
     if (response === undefined) return
 
     if (response.status === 400) {
-      $notification.error(
-        'Thông tin cung cấp không chính xác, hoặc hành động bị từ chối.'
-      )
+      process.client &&
+        $notification.error(
+          'Thông tin cung cấp không chính xác, hoặc hành động bị từ chối.'
+        )
       return response
     }
 
     if (response.status === 401) {
-      $notification.error('Hành động yêu cầu phải đăng nhập.')
+      process.client && $notification.error('Hành động yêu cầu phải đăng nhập.')
       return response
     }
 
     if (response.status === 403) {
-      $notification.error('Bạn không đủ quyền để thực hiện chức năng này.')
+      process.client &&
+        $notification.error('Bạn không đủ quyền để thực hiện chức năng này.')
       return response
     }
 
     if (response.status === 419) {
       $axios.$get('../sanctum/csrf-cookie')
-      $notification.info('Vui lòng thử lại sau.')
+      process.client && $notification.info('Vui lòng thử lại sau.')
       return response
     }
 
     if (response.status === 422) {
-      $notification.error('Thông tin cung cấp không hợp lệ.')
+      process.client && $notification.error('Thông tin cung cấp không hợp lệ.')
       return response
     }
   })
