@@ -24,6 +24,7 @@ export default {
   plugins: [
     '~/plugins/laravel-sanctum.client',
     '~/plugins/vuelidate.client',
+    '~/plugins/notification.client',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -43,6 +44,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    ['nuxt-tailvue', {toast: true}],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

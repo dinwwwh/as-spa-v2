@@ -3059,7 +3059,7 @@ colorette@^1.2.1, colorette@^1.2.2, colorette@^1.3.0, colorette@^1.4.0:
   resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.4.0.tgz#5190fbb87276259a86ad700bff2c6d6faa3fca40"
   integrity sha512-Y2oEozpomLn7Q3HFP7dpww7AtMJplbM9lGZP6RDfHqmbeRjiwRg4n6VM6j4KLmRke85uWEI7JqF17f3pqdRA0g==
 
-commander@^2.19.0, commander@^2.20.0:
+commander@^2.19.0, commander@^2.20.0, commander@^2.20.3:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
@@ -3490,6 +3490,11 @@ cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
+
+cssfilter@0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/cssfilter/-/cssfilter-0.0.10.tgz#c6d2672632a2e5c83e013e6864a42ce8defd20ae"
+  integrity sha1-xtJnJjKi5cg+AT5oZKQs6N79IK4=
 
 cssnano-preset-default@^4.0.8:
   version "4.0.8"
@@ -6989,6 +6994,16 @@ num2fraction@^1.2.2:
   resolved "https://registry.yarnpkg.com/num2fraction/-/num2fraction-1.2.2.tgz#6f682b6a027a4e9ddfa4564cd2589d1d4e669ede"
   integrity sha1-b2gragJ6Tp3fpFZM0lidHU5mnt4=
 
+nuxt-tailvue@^1.0.91:
+  version "1.0.91"
+  resolved "https://registry.yarnpkg.com/nuxt-tailvue/-/nuxt-tailvue-1.0.91.tgz#7dca1725f8178fa8d197faab267f855cf6f17e5c"
+  integrity sha512-IYpKrVIfvE6nis5tvxgeHpYJJqGPaX4GvapCFODzoIwAKR9dfiHfWujqYs1Ag/9+yU0izvFBuLIpBLfOkmea5A==
+  dependencies:
+    tv-button latest
+    tv-icon latest
+    tv-modal latest
+    tv-toast latest
+
 nuxt@^2.15.7:
   version "2.15.8"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-2.15.8.tgz#946cba46bdaaf0e3918aa27fd9ea0fed8ed303b0"
@@ -10024,6 +10039,36 @@ tty-browserify@0.0.0:
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   integrity sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
 
+tv-button@^1.0.7:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/tv-button/-/tv-button-1.2.2.tgz#6392cd88fae4a879e3c68d3b08604f24dcb5c6fe"
+  integrity sha512-hiOPIBuMt7ID6BcqG1umWWpLlnOJVnyZPzNHiWXrtGhoIECGf+z96ub7o07zer+C7iZg+Ei0TWt8xB0zQVbL4A==
+
+tv-button@latest:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/tv-button/-/tv-button-2.0.2.tgz#39f583e66c8a7e55afb8d21280e6d14f908d0816"
+  integrity sha512-qcfrsKtSr/N330prwuOJLwMwG+L+0KUkvGI/KlZX1hQZWfCeRZtUI+XxKnaIIN51ZJplb8eQ3bxnjQ74jSiYow==
+
+tv-icon@^1.0.1, tv-icon@latest:
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/tv-icon/-/tv-icon-1.0.24.tgz#c952c8ac9277f1ace7bc128229d3b81a27306787"
+  integrity sha512-2tAaWWmGrjjwEPJjMBVAZBXvWuA2jpoYmCu5ipbaLVE0v9ve3gnT0EBjb8LtJn7f4BjySkcFlOqWPg0hzVN46Q==
+
+tv-modal@latest:
+  version "1.0.24"
+  resolved "https://registry.yarnpkg.com/tv-modal/-/tv-modal-1.0.24.tgz#dce88d4c197909856e1fa376fb63439b4c7686bd"
+  integrity sha512-4DA2f9XpB9GP3+XsH1e1rBQcvMI6CJkC5rTeCVgfhZz2NMUtTlz0mO71VJlB8KYzWSi4QoYOBtqBk2TLZ+fewQ==
+  dependencies:
+    tv-button "^1.0.7"
+    tv-icon "^1.0.1"
+
+tv-toast@latest:
+  version "1.2.30"
+  resolved "https://registry.yarnpkg.com/tv-toast/-/tv-toast-1.2.30.tgz#f1a79d5b11908e7b7ed46dffbe20ce4c16c33563"
+  integrity sha512-giirzodNpV2NN9AVku3eSS2/kDO17iepDDTJoTLrasBnQx//6mUi9/fS6dksfRn7Mjn1P2AvDLsgFqhSBtbFEg==
+  dependencies:
+    tv-icon "^1.0.1"
+
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/type-check/-/type-check-0.4.0.tgz#07b8203bfa7056c0657050e3ccd2c37730bab8f1"
@@ -10683,6 +10728,14 @@ ws@^7.3.1:
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.5.tgz#8b4bc4af518cfabd0473ae4f99144287b33eb881"
   integrity sha512-BAkMFcAzl8as1G/hArkxOxq3G7pjUqQ3gzYbLL0/5zNkph70e+lCoxBGnm6AW1+/aiNeV4fnKqZ8m4GZewmH2w==
+
+xss@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/xss/-/xss-1.0.9.tgz#3ffd565571ff60d2e40db7f3b80b4677bec770d2"
+  integrity sha512-2t7FahYnGJys6DpHLhajusId7R0Pm2yTmuL0GV9+mV0ZlaLSnb2toBmppATfg5sWIhZQGlsTLoecSzya+l4EAQ==
+  dependencies:
+    commander "^2.20.3"
+    cssfilter "0.0.10"
 
 xtend@^4.0.0, xtend@^4.0.2, xtend@~4.0.1:
   version "4.0.2"
