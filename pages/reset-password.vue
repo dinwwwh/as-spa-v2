@@ -47,7 +47,11 @@
             Xác nhận mật khẩu
           </Inputs>
 
-          <Buttons loading="completeResetPassword" @click="resetPassword">
+          <Buttons
+            class="w-full"
+            loading="completeResetPassword"
+            @click="resetPassword"
+          >
             Thiết lập lại mật khẩu
           </Buttons>
         </div>

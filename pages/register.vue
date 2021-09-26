@@ -68,7 +68,7 @@
             </div>
           </div>
 
-          <Buttons loading="completeRegister" @click="register">
+          <Buttons class="w-full" loading="completeRegister" @click="register">
             Đăng ký
           </Buttons>
         </div>

@@ -1,12 +1,10 @@
 <template>
   <button
     class="
-      w-full
       focus:outline-none
       flex
       items-center
       justify-center
-      m-x-auto
       font-medium
       border border-transparent
       shadow-sm

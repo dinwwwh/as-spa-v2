@@ -37,7 +37,9 @@
             </Links>
           </div>
 
-          <Buttons loading="completeLogin" @click="login"> Đăng nhập </Buttons>
+          <Buttons class="w-full" loading="completeLogin" @click="login">
+            Đăng nhập
+          </Buttons>
         </div>
       </div>
     </div>

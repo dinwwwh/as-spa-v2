@@ -35,7 +35,11 @@
 
           <MessagesInfo v-if="info">{{ info }}</MessagesInfo>
 
-          <Buttons loading="completeForgotPassword" @click="forgotPassword">
+          <Buttons
+            class="w-full"
+            loading="completeForgotPassword"
+            @click="forgotPassword"
+          >
             Quyên mật khẩu
           </Buttons>
         </div>
