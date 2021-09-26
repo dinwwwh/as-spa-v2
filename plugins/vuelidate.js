@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import Vuelidate from 'vuelidate';
+import Vue from 'vue'
+import Vuelidate from 'vuelidate'
 import {
   required,
   requiredIf,
@@ -19,8 +19,8 @@ import {
   sameAs,
   url,
   helpers,
-} from 'vuelidate/lib/validators';
-Vue.use(Vuelidate);
+} from 'vuelidate/lib/validators'
+Vue.use(Vuelidate)
 
 const rules = {
   required,
@@ -41,34 +41,40 @@ const rules = {
   sameAs,
   url,
   in(values) {
-    return (val) => !helpers.req(val) || values.includes(val);
+    return (val) => !helpers.req(val) || values.includes(val)
   },
   equal(value) {
-    return (val) => !helpers.req(val) || value === val;
+    return (val) => !helpers.req(val) || value === val
   },
   gte(value) {
     return (val) => {
-      if (!value) return true;
-      return !helpers.req(val) || value <= val;
-    };
+      if (!value) return true
+      return !helpers.req(val) || value <= val
+    }
   },
   lte(value) {
     return (val) => {
-      if (!value) return true;
-      return !helpers.req(val) || value >= val;
-    };
-  },
-  json(value) {
-    if (!helpers.req(value)) return true;
-
-    try {
-      JSON.parse(value);
-      return true;
-    } catch (error) {
-      return false;
+      if (!value) return true
+      return !helpers.req(val) || value >= val
     }
   },
-};
+  json(value) {
+    if (!helpers.req(value)) return true
+
+    try {
+      JSON.parse(value)
+      return true
+    } catch (error) {
+      return false
+    }
+  },
+  unique(callback) {
+    return async (value) => {
+      if (value === '') return true
+      return await callback(value)
+    }
+  },
+}
 const messages = {
   required: ':name là bắt buộc.',
   minLength: ':name quá ngắn, vui lòng bổ sung thêm.',
@@ -92,30 +98,31 @@ const messages = {
   gte: ':name giá trị phải lớn hơn',
   lte: ':name giá trị phải nhỏ hơn',
   json: ':name phải tuân theo cú pháp JSON',
-};
+  unique: ':name đã được sử dụng trên hệ thống',
+}
 
 export default function (context, inject) {
-  inject('vuelidate',  {
+  inject('vuelidate', {
     message: getValidatorErrorMessage,
     rules,
-  });
+  })
 }
 
 function getValidatorErrorMessage(validator, name = 'trường này') {
-  if (!validator.$error) return null;
+  if (!validator.$error) return null
 
-  let errorMessage;
+  let errorMessage
 
   Object.keys(rules).some((field) => {
     if (validator[field] === false) {
-      errorMessage = messages[field]?.replaceAll(':name', name);
+      errorMessage = messages[field]?.replaceAll(':name', name)
       errorMessage =
-        errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1);
-      return true;
+        errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1)
+      return true
     }
 
-    return false;
-  });
+    return false
+  })
 
-  return errorMessage || 'Trường này không hợp lệ.';
+  return errorMessage || 'Trường này không hợp lệ.'
 }
