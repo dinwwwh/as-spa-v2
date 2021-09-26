@@ -21,10 +21,10 @@ export default {
   plugins: [
     '~/plugins/notification.client',
     '~/plugins/check-type',
+    '~/plugins/vuelidate',
     '~/plugins/axios',
     '~/plugins/laravel-sanctum',
     '~/plugins/auth',
-    '~/plugins/vuelidate.client',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
