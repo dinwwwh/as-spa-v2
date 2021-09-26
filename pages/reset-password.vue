@@ -48,7 +48,7 @@
           </Inputs>
 
           <Buttons loading="completeResetPassword" @click="resetPassword">
-            Thiết lập lại password
+            Thiết lập lại mật khẩu
           </Buttons>
         </div>
       </div>
