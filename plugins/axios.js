@@ -1,8 +1,9 @@
 export default function (
-  { $axios, redirect, error, $checkType, $notification },
+  { $axios, redirect, error, $checkType, $notification, $config },
   inject
 ) {
   $axios.setHeader('Accept', 'application/json')
+  process.server && $axios.setHeader('Referer', $config.app.baseURL) // Fix 401 error in server
 
   inject('formData', formData)
 

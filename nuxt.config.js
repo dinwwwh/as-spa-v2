@@ -3,29 +3,27 @@ export default {
   head: {
     title: 'as-spa-v2',
     htmlAttrs: {
-      lang: 'vi'
+      lang: 'vi',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/notification.client',
     '~/plugins/check-type',
     '~/plugins/axios',
-    '~/plugins/laravel-sanctum.client',
+    '~/plugins/laravel-sanctum',
+    '~/plugins/auth',
     '~/plugins/vuelidate.client',
   ],
 
@@ -46,7 +44,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    ['nuxt-tailvue', {toast: true}],
+    ['nuxt-tailvue', { toast: true }],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -55,10 +53,12 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  },
+  build: {},
 
   publicRuntimeConfig: {
+    app: {
+      baseURL: process.env.APP_BASE_URL,
+    },
     axios: {
       baseURL: process.env.PUBLIC_BASE_API_URL,
       credentials: true,
