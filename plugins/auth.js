@@ -1,5 +1,11 @@
 import { isEmail } from 'validator'
 
+const params = {
+  _sensitiveAttributes: true,
+  _specialAttributes: true,
+  _abilities: true,
+}
+
 export default async function ({ $axios, store }, inject) {
   if (process.server) {
     await initProfileInfo()
@@ -18,9 +24,7 @@ export default async function ({ $axios, store }, inject) {
    */
   async function initProfileInfo() {
     const { data: profile } = await $axios.$get('profile', {
-      params: {
-        _sensitiveInfos: true,
-      },
+      params,
       validateStatus: () => true,
     })
 
@@ -46,7 +50,9 @@ export default async function ({ $axios, store }, inject) {
       info.login = loginOrEmail
     }
 
-    const { status, data } = await $axios.post('login', info)
+    const { status, data } = await $axios.post('login', info, {
+      params,
+    })
     if (status < 300) {
       store.commit('auth/profile', data.data)
     }
@@ -60,6 +66,7 @@ export default async function ({ $axios, store }, inject) {
    */
   async function logout() {
     const { status } = await $axios.post('logout')
+    status < 300 && store.commit('auth/profile', undefined)
     return status < 300
   }
 }
