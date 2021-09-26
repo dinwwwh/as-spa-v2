@@ -21,6 +21,7 @@ export default {
   plugins: [
     '~/plugins/notification.client',
     '~/plugins/check-type',
+    '~/plugins/number',
     '~/plugins/vuelidate',
     '~/plugins/axios',
     '~/plugins/laravel-sanctum',
