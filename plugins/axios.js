@@ -5,7 +5,7 @@ export default function (
   $axios.setHeader('Accept', 'application/json')
   process.server && $axios.setHeader('Referer', $config.app.baseURL) // Fix 401 error in server
 
-  inject('formData', formData)
+  inject('formData', createFormData)
 
   $axios.onError(({ response }) => {
     if (response === undefined) return
@@ -41,14 +41,14 @@ export default function (
     }
   })
 
-  function formData(data, formData = new FormData(), initKey = null) {
+  function createFormData(data, formData = new FormData(), initKey = null) {
     // Case: data is an object or list
     if ($checkType('Object|Array|FileList', data)) {
       Object.keys(data).forEach((key) => {
         if (initKey) {
-          formData = formData(data[key], formData, `${initKey}[${key}]`)
+          formData = createFormData(data[key], formData, `${initKey}[${key}]`)
         } else {
-          formData = formData(data[key], formData, key)
+          formData = createFormData(data[key], formData, key)
         }
       })
     }
