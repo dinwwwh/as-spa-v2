@@ -20,7 +20,7 @@
     }"
     v-bind="$attrs"
     v-on="$listeners"
-    @click="isLoading = true"
+    @click="onClick"
   >
     <slot />
 
@@ -51,8 +51,8 @@ export default {
     },
     // Received a event name loading will auto stop when event emitted
     loading: {
-      type: String,
-      default: undefined,
+      type: [String, Boolean],
+      default: false,
     },
   },
   data() {
@@ -71,6 +71,9 @@ export default {
     }
   },
   methods: {
+    onClick() {
+      if (this.$checkType('String', this.loading)) this.isLoading = true
+    },
     onLoaded() {
       this.isLoading = false
     },
