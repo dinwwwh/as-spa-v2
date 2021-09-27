@@ -162,7 +162,7 @@
                       <span class="sr-only">Open user menu</span>
                       <img
                         class="h-8 w-8 rounded-full"
-                        :src="authProfile.avatarPath"
+                        :src="authProfile.avatarUrl"
                         alt=""
                       />
                     </button>
@@ -340,7 +340,7 @@
                 <div class="flex-shrink-0">
                   <img
                     class="h-10 w-10 rounded-full"
-                    :src="authProfile.avatarPath"
+                    :src="authProfile.avatarUrl"
                     alt=""
                   />
                 </div>

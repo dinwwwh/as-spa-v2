@@ -1,8 +1,8 @@
 import { isEmail } from 'validator'
 
 const params = {
-  _sensitiveAttributes: true,
-  _specialAttributes: true,
+  _sensitive: true,
+  _computed: true,
   _abilities: true,
 }
 

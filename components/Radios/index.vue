@@ -64,7 +64,7 @@ export default {
     // When user click this tag
     checkInput(e) {
       if (this.isChecked) {
-        this.$emit('change', null)
+        this.$emit('change', undefined)
       } else {
         this.$emit('change', this.value)
       }
