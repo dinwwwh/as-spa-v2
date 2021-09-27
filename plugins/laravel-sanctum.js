@@ -1,5 +1,5 @@
-export default async function ({ $axios, $config }, inject) {
-  process.client && (await initCsrf())
+export default function ({ $axios, $config }, inject) {
+  process.client && initCsrf()
 
   inject('csrf', {
     fresh: initCsrf,

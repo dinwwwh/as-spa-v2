@@ -7,7 +7,8 @@ const params = {
 }
 
 export default async function ({ $axios, store }, inject) {
-  await initProfileInfo()
+  process.server && (await initProfileInfo())
+  process.client && initProfileInfo()
 
   inject('auth', {
     login,
