@@ -26,6 +26,7 @@ export default {
     '~/plugins/vuelidate',
     '~/plugins/axios',
     '~/plugins/laravel-sanctum',
+    '~/plugins/app',
     '~/plugins/auth',
   ],
 
