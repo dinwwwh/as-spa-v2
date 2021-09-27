@@ -85,7 +85,11 @@ export default {
         return
       }
 
-      const success = await this.$auth.login(this.loginOrEmail, this.password)
+      const success = await this.$auth.login(
+        this.loginOrEmail,
+        this.password,
+        this.remember
+      )
       this.$nuxt.$emit('completeLogin')
 
       if (success) {
