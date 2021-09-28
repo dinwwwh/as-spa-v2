@@ -216,6 +216,29 @@
                       <!-- Group 1 -->
                       <div class="py-1.5 px-3.5">
                         <NuxtLink
+                          v-if="canViewAdminPage"
+                          :to="{ name: 'admin' }"
+                          class="
+                            group
+                            flex
+                            items-center
+                            py-1.5
+                            hover:text-teal-600
+                          "
+                        >
+                          <IconsAdmin
+                            class="
+                              size-xl
+                              flex-none
+                              mr-3
+                              text-gray-400
+                              group-hover:text-indigo-600
+                            "
+                          />
+                          Quản trị
+                        </NuxtLink>
+
+                        <NuxtLink
                           :to="{ name: 'profile' }"
                           class="
                             group
@@ -403,6 +426,22 @@
               </div>
               <div class="mt-3 space-y-1">
                 <NuxtLink
+                  v-if="canViewAdminPage"
+                  :to="{ name: 'admin' }"
+                  class="
+                    block
+                    px-4
+                    py-2
+                    text-base
+                    font-medium
+                    text-gray-500
+                    hover:text-gray-800
+                    hover:bg-gray-100
+                  "
+                >
+                  Quản trị
+                </NuxtLink>
+                <NuxtLink
                   :to="{ name: 'profile' }"
                   class="
                     block
@@ -514,6 +553,9 @@ export default {
     },
     authProfile() {
       return this.$store.state.auth.profile ?? {}
+    },
+    canViewAdminPage() {
+      return this.authProfile.canManageRechargedCard
     },
   },
   mounted() {
