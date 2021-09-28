@@ -21,7 +21,7 @@
         relative
       "
     >
-      <div><IconsCheckCircle class="size-xl" /></div>
+      <div><IconsCheckCircle class="h-6" /></div>
       <div>
         <slot />
       </div>

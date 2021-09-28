@@ -6,6 +6,8 @@
         <span class="text-base font-normal text-gray-500"> (30p/thẻ) </span>
       </HeadingsBase3>
 
+      <MessagesWarning> Sai mệnh giá có thể dẫn đến mất thẻ </MessagesWarning>
+
       <div class="space-y-8">
         <Selects
           v-model="telco"
@@ -93,7 +95,7 @@ export default {
             display: `${this.$number.format(
               faceValue.value
             )}đ = ${this.$number.format(
-              (faceValue.value * faceValue.tax) / 100
+              (faceValue.value * (100 - faceValue.tax)) / 100
             )}đ trên app`,
             value: faceValue.value,
           })) || []

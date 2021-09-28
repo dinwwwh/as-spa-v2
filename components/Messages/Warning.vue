@@ -21,7 +21,7 @@
         relative
       "
     >
-      <div><IconsExclamation class="size-xl" /></div>
+      <div><IconsExclamation class="h-6" /></div>
       <div>
         <slot />
       </div>
