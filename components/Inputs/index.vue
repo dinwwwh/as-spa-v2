@@ -26,8 +26,8 @@
     <p
       class="text-sm"
       :class="{
-        'text-gray-500': !error,
-        'text-red-500': error,
+        'text-gray-500': !hasError,
+        'text-red-500': hasError,
       }"
     >
       <template v-if="$checkType('Object', error) && error.$error">
