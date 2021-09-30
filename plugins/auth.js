@@ -14,6 +14,7 @@ export default async function ({ $axios, store }, inject) {
     login,
     logout,
     refresh: initProfileInfo,
+    user: store.state.auth.profile,
   })
 
   /**
