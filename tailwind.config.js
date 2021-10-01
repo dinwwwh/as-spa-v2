@@ -17,6 +17,20 @@ module.exports = {
       'bg-gray-600',
       'bg-purple-600',
       'bg-pink-600',
+      'bg-indigo-100',
+      'bg-red-100',
+      'bg-green-100',
+      'bg-blue-100',
+      'bg-gray-100',
+      'bg-purple-100',
+      'bg-pink-100',
+      'text-indigo-800',
+      'text-red-800',
+      'text-green-800',
+      'text-blue-800',
+      'text-gray-800',
+      'text-purple-800',
+      'text-pink-800',
       'hover:bg-indigo-700',
       'hover:bg-red-700',
       'hover:bg-green-700',
@@ -24,7 +38,7 @@ module.exports = {
       'hover:bg-gray-700',
       'hover:bg-purple-700',
       'hover:bg-pink-700',
-    ]
+    ],
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -33,7 +47,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
+  plugins: [require('@tailwindcss/forms')],
 }
