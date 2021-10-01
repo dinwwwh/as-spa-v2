@@ -6,9 +6,15 @@
         <span class="text-xl text-gray-500 italic">#{{ accountType.id }}</span>
       </HeadingsBase1>
 
-      <div>
+      <div class="flex items-center gap-3">
         <Buttons color="yellow" @click="showUpdateScreen = !showUpdateScreen">
           Cập nhật
+        </Buttons>
+        <Buttons
+          color="green"
+          @click="showCreateAccountInfo = !showCreateAccountInfo"
+        >
+          Thêm thông tin tài khoản
         </Buttons>
       </div>
     </div>
@@ -22,8 +28,31 @@
       </div>
     </div>
 
+    <div class="space-y-2">
+      <HeadingsBase5> Các thông tin tài khoản </HeadingsBase5>
+      <div class="flex gap-2 flex-wrap">
+        <NuxtLink
+          v-for="accountInfo in accountType.accountInfos"
+          :key="accountInfo.id"
+          :to="{ name: 'account-infos-id', params: { id: accountInfo.id } }"
+        >
+          <Badges>
+            {{ accountInfo.name }}
+          </Badges>
+        </NuxtLink>
+      </div>
+    </div>
+
     <Popups v-model="showUpdateScreen">
       <AccountTypesUpdate v-model="accountType" class="shadow-none" />
+    </Popups>
+
+    <Popups v-model="showCreateAccountInfo">
+      <AccountInfosCreate
+        :account-type="accountType"
+        class="shadow-none"
+        @created="accountType.accountInfos.push($event)"
+      />
     </Popups>
   </div>
 </template>
@@ -37,7 +66,7 @@ export default {
       {
         params: {
           _abilities: true,
-          _relationships: ['tags', 'users'],
+          _relationships: ['tags', 'users', 'accountInfos'],
         },
       }
     )
@@ -45,6 +74,7 @@ export default {
     return {
       accountType,
       showUpdateScreen: false,
+      showCreateAccountInfo: false,
     }
   },
 }
