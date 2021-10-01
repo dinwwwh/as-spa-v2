@@ -20,6 +20,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/dayjs',
+    '~/plugins/string',
     '~/plugins/notification.client',
     '~/plugins/copy.client',
     '~/plugins/check-type',

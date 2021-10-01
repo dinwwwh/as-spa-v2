@@ -239,6 +239,29 @@
                         </NuxtLink>
 
                         <NuxtLink
+                          v-if="canViewAdminPage"
+                          :to="{ name: 'my-shop' }"
+                          class="
+                            group
+                            flex
+                            items-center
+                            py-1.5
+                            hover:text-teal-600
+                          "
+                        >
+                          <IconsShop
+                            class="
+                              size-xl
+                              flex-none
+                              mr-3
+                              text-gray-400
+                              group-hover:text-indigo-600
+                            "
+                          />
+                          Cửa hàng của tôi
+                        </NuxtLink>
+
+                        <NuxtLink
                           :to="{ name: 'profile' }"
                           class="
                             group
@@ -440,6 +463,22 @@
                   "
                 >
                   Quản trị
+                </NuxtLink>
+                <NuxtLink
+                  v-if="canViewAdminPage"
+                  :to="{ name: 'my-shop' }"
+                  class="
+                    block
+                    px-4
+                    py-2
+                    text-base
+                    font-medium
+                    text-gray-500
+                    hover:text-gray-800
+                    hover:bg-gray-100
+                  "
+                >
+                  Cửa hàng của tôi
                 </NuxtLink>
                 <NuxtLink
                   :to="{ name: 'profile' }"
