@@ -38,6 +38,13 @@ const rechargedCard = {
   },
 }
 
+const tag = {
+  getColor({ type }) {
+    if (type === null) return 'gray'
+    if (type === 1) return 'indigo'
+  },
+}
+
 export default async function ({ $axios, store }, inject) {
   process.server && (await initApp())
 
@@ -45,6 +52,7 @@ export default async function ({ $axios, store }, inject) {
     refresh: initApp,
     findConfig,
     rechargedCard,
+    tag,
   })
 
   async function initApp() {
