@@ -10,7 +10,17 @@
     >
       <div
         v-if="isShow"
-        class="bg-opacity-20 fixed inset-0 z-40 flex bg-black"
+        class="
+          bg-opacity-20
+          fixed
+          inset-0
+          z-40
+          flex
+          bg-black
+          max-h-screen
+          overflow-y-auto
+          pb-4
+        "
         @click.self="isShow = false"
       >
         <div
