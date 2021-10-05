@@ -6,7 +6,7 @@ const params = {
   _abilities: true,
 }
 
-export default async function ({ $axios, store }, inject) {
+export default async function ({ $axios, store, $notification }, inject) {
   process.server && (await initProfileInfo())
   process.client && initProfileInfo()
 
@@ -15,6 +15,7 @@ export default async function ({ $axios, store }, inject) {
     logout,
     refresh: initProfileInfo,
     user: store.state.auth.profile,
+    updateBalance,
   })
 
   /**
@@ -68,5 +69,10 @@ export default async function ({ $axios, store }, inject) {
     const { status } = await $axios.post('logout')
     status < 300 && store.commit('auth/profile', undefined)
     return status < 300
+  }
+
+  function updateBalance(amount, message = undefined) {
+    store.commit('auth/balance', store.state.auth.profile.balance + amount)
+    if (message) $notification.info(message)
   }
 }

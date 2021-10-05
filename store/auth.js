@@ -14,4 +14,7 @@ export const mutations = {
   profile(state, profile) {
     state.profile = profile
   },
+  balance(state, balance) {
+    state.profile.balance = balance
+  },
 }
