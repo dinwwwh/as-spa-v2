@@ -1,6 +1,7 @@
 <template>
   <GroupsSeparated>
-    <div class="space-y-8">
+    <AppLoading v-if="$fetchState.pending" />
+    <div v-if="!$fetchState.pending" class="space-y-8">
       <div class="space-y-2">
         <HeadingsBase3> Đăng tài khoản để bán </HeadingsBase3>
         <span class="text-gray-500 text-sm">
@@ -52,6 +53,19 @@
           </template>
         </Inputs>
 
+        <Inputs
+          v-for="accountInfo in accountType.creatorAccountInfos"
+          :key="accountInfo.id"
+          type="text"
+          :model="getValueOfAccountInfo(accountInfo.id)"
+          :error="$v.account.creatorInfos"
+          name="những thông tin này"
+          @model="onUpdateAccountInfo(accountInfo.id, $event)"
+        >
+          {{ accountInfo.name }}
+          <template #description>{{ accountInfo.description }}</template>
+        </Inputs>
+
         <TagsSelectsMultiple
           v-model="account.tags"
           :class="inputClasses"
@@ -87,7 +101,7 @@
       </div>
     </div>
 
-    <template #footer>
+    <template v-if="!$fetchState.pending" #footer>
       <div class="flex items-center justify-end">
         <Buttons color="green" loading="completeCreateAccount" @click="create">
           Tạo
@@ -99,21 +113,10 @@
 
 <script>
 export default {
-  model: {
-    prop: 'model',
-    event: 'model',
-  },
   props: {
-    model: {
-      type: Object,
-      default: undefined,
-    },
-    accountType: {
-      type: Object,
+    accountTypeId: {
+      type: Number,
       required: true,
-      validator(val) {
-        return val.accountInfos !== undefined
-      },
     },
     inputClasses: {
       type: String,
@@ -122,11 +125,26 @@ export default {
   },
   data() {
     return {
-      account: this.model || {},
+      account: {
+        creatorInfos: [],
+      },
+      accountType: undefined,
     }
   },
+  async fetch() {
+    const { data: accountType } = await this.$axios.$get(
+      `account-types/${this.accountTypeId}`,
+      {
+        params: {
+          _relationships: ['creatorAccountInfos'],
+        },
+      }
+    )
+
+    this.accountType = accountType
+  },
   validations() {
-    const { required } = this.$vuelidate.rules
+    const { required, minLength } = this.$vuelidate.rules
 
     return {
       account: {
@@ -138,6 +156,10 @@ export default {
         },
         mainImage: {
           required,
+        },
+        creatorInfos: {
+          required,
+          minLength: minLength(this.accountType.creatorAccountInfos.length),
         },
       },
     }
@@ -161,6 +183,7 @@ export default {
           cost: this.account.cost,
           price: this.account.price,
           tags: this.account.tags,
+          creatorInfos: this.account.creatorInfos,
           images: [this.account.mainImage, ...(this.account.otherImages ?? [])],
           _relationships: ['images', 'tags'],
           _abilities: true,
@@ -171,8 +194,28 @@ export default {
       this.$nuxt.$emit('completeCreateAccount')
 
       if (status < 300) {
-        this.$emit('model', account)
+        this.$emit('created', account)
         this.$notification.success('Đăng thành công')
+      }
+    },
+    getValueOfAccountInfo(id) {
+      return this.account.creatorInfos.find((a) => a.id === id)?.pivot?.value
+    },
+    onUpdateAccountInfo(id, value) {
+      const accountInfo = this.account.creatorInfos.find((a) => a.id === id)
+
+      if (accountInfo) {
+        this.account.creatorInfos = this.account.creatorInfos.map((a) => {
+          if (a.id === id) {
+            return {
+              id,
+              pivot: { value },
+            }
+          }
+          return a
+        })
+      } else {
+        this.account.creatorInfos.push({ id, pivot: { value } })
       }
     },
   },

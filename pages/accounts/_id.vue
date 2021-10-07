@@ -12,7 +12,7 @@
 
     <div class="grid md:grid-cols-5 gap-6">
       <Groups class="space-y-6 md:col-span-3">
-        <div class="flex gap-3">
+        <div class="flex gap-3 flex-wrap">
           <TagsBadgesLarge
             v-for="tag in account.tags"
             :key="'tag' + tag.slug"
@@ -30,7 +30,7 @@
     </div>
 
     <Popups v-model="showUpdate">
-      <AccountsUpdate v-model="account" class="shadow-none" />
+      <AccountsUpdate :account-id="account.id" class="shadow-none" />
     </Popups>
 
     <Popups v-model="showBuy">

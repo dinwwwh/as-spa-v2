@@ -34,6 +34,29 @@
         >
           Mô tả
         </Textareas>
+
+        <Checkboxes v-model="accountInfo.canCreator" :class="inputClasses">
+          Người tạo tài khoản có thể xem và chỉnh sửa
+          <template #description>
+            Chỉ áp dụng khi tài khoản đang bán. Cũng là thông tin yêu cầu người
+            đăng tài khoản cung cấp.
+          </template>
+        </Checkboxes>
+
+        <Checkboxes v-model="accountInfo.canBuyer" :class="inputClasses">
+          Người mua có thể xem - 1
+          <template #description>
+            Chỉ áp dụng khi tài khoản đã được mua và đang chờ xác nhận
+          </template>
+        </Checkboxes>
+
+        <Checkboxes v-model="accountInfo.canBuyerOke" :class="inputClasses">
+          Người mua có thể xem - 2
+          <template #description>
+            Chỉ áp dụng khi tài khoản đã được mua và đã xác nhận là tài khoản
+            đúng thông tin
+          </template>
+        </Checkboxes>
       </div>
     </div>
 
@@ -65,7 +88,12 @@ export default {
   },
   data() {
     return {
-      accountInfo: { ...this.model },
+      accountInfo: {
+        ...this.model,
+        canCreator: !!this.model.canCreator,
+        canBuyer: !!this.model.canBuyer,
+        canBuyerOke: !!this.model.canBuyerOke,
+      },
     }
   },
   validations() {

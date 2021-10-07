@@ -1,6 +1,6 @@
 <template>
   <div class="my-16">
-    <AccountsCreate :account-type="accountType" />
+    <AccountsCreate :account-type-id="parseInt($route.params.id)" />
   </div>
 </template>
 
@@ -24,19 +24,5 @@ export default {
       }
     },
   ],
-  async asyncData({ $axios, params }) {
-    const { data: accountType } = await $axios.$get(
-      `account-types/${params.id}`,
-      {
-        params: {
-          _relationships: ['accountInfos'],
-        },
-      }
-    )
-
-    return {
-      accountType,
-    }
-  },
 }
 </script>
