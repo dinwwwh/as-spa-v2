@@ -16,6 +16,8 @@
         <slot />
       </tbody>
     </table>
+
+    <slot name="other" />
   </div>
 </template>
 

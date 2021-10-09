@@ -67,6 +67,39 @@
             />
             <span class="truncate"> Thẻ nạp </span>
           </NuxtLink>
+
+          <NuxtLink
+            v-if="$auth.user.canManageTag"
+            :to="{
+              name: 'admin-tags',
+            }"
+            class="
+              text-gray-700
+              hover:text-gray-800
+              hover:bg-gray-50
+              group
+              rounded-md
+              px-3
+              py-2
+              flex
+              items-center
+              text-sm
+              font-medium
+            "
+          >
+            <IconsTag
+              class="
+                text-gray-400
+                group-hover:text-gray-500
+                flex-shrink-0
+                -ml-1
+                mr-3
+                size-2xl
+                _icon
+              "
+            />
+            <span class="truncate"> Nhãn </span>
+          </NuxtLink>
         </nav>
       </aside>
 
