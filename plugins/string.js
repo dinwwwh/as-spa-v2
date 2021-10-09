@@ -1,6 +1,7 @@
 export default function (context, inject) {
   inject('string', {
     limit,
+    capitalizeFirstLetter,
   })
 
   function limit(text, length, wildcard = '...') {
@@ -13,5 +14,9 @@ export default function (context, inject) {
       return text.substr(0, lastSpaceAt) + wildcard
     }
     return text.substr(0, length) + wildcard
+  }
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
 }

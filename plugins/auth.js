@@ -6,7 +6,10 @@ const params = {
   _abilities: true,
 }
 
-export default async function ({ $axios, store, $notification }, inject) {
+export default async function (
+  { $axios, store, $notification, $string },
+  inject
+) {
   process.server && (await initProfileInfo())
   process.client && initProfileInfo()
 
@@ -16,6 +19,7 @@ export default async function ({ $axios, store, $notification }, inject) {
     refresh: initProfileInfo,
     user: store.state.auth.profile,
     updateBalance,
+    can,
   })
 
   /**
@@ -74,5 +78,11 @@ export default async function ({ $axios, store, $notification }, inject) {
   function updateBalance(amount, message = undefined) {
     store.commit('auth/balance', store.state.auth.profile.balance + amount)
     if (message) $notification.info(message)
+  }
+
+  function can(ability) {
+    return !!store.state.auth.profile?.[
+      'can' + $string.capitalizeFirstLetter(ability)
+    ]
   }
 }

@@ -1,13 +1,20 @@
 <template>
   <div class="space-y-12">
     <div class="space-y-3">
-      <div class="flex justify-end">
+      <div class="flex justify-end items-center gap-3">
         <InputsSearch
           v-model="search"
           :loading="isSearching"
           class="md:min-w-[300px]"
           @model="onChangeSearch"
         />
+
+        <Buttons
+          v-if="$auth.can('createTag')"
+          @click="isShowCreateScreen = !isShowCreateScreen"
+        >
+          Tạo nhãn
+        </Buttons>
       </div>
       <TagsTable :tags="tags" />
       <PaginationsCenteredNumbers
@@ -17,6 +24,10 @@
         @model="onPageChange"
       />
     </div>
+
+    <Popups v-model="isShowCreateScreen">
+      <TagsCreate class="shadow-none" @created="tags.unshift($event)" />
+    </Popups>
   </div>
 </template>
 
@@ -45,6 +56,7 @@ export default {
       meta,
       search: undefined,
       isSearching: false,
+      isShowCreateScreen: false,
     }
   },
   methods: {
