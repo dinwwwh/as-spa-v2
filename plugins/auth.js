@@ -17,7 +17,6 @@ export default async function (
     login,
     logout,
     refresh: initProfileInfo,
-    user: store.state.auth.profile,
     updateBalance,
     can,
   })

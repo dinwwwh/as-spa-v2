@@ -8,7 +8,7 @@
 export default {
   middleware: [
     ({ $auth, error }) => {
-      $auth.user.canCreateAccountType || error(403)
+      $auth.can('createAccountType') || error(403)
     },
   ],
 }

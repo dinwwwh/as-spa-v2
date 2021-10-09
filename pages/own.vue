@@ -2,7 +2,7 @@
   <main class="max-w-7xl mx-auto pb-10 lg:py-12 lg:px-8">
     <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
       <aside class="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3 space-y-8">
-        <div v-if="$auth.user.canCreateAccountType" class="space-y-4">
+        <div v-if="$auth.can('createAccountType')" class="space-y-4">
           <p class="text-sm text-gray-500 tracking-wide">Kiểu tài khoản</p>
           <nav class="space-y-1">
             <NuxtLink

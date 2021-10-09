@@ -43,7 +43,7 @@ const params = {
 export default {
   middleware: [
     ({ $auth, error }) => {
-      !$auth.user.canManageTag && error(403)
+      !$auth.can('manageTag') && error(403)
     },
   ],
   async asyncData({ $axios }) {

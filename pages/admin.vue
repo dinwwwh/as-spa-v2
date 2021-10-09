@@ -69,7 +69,7 @@
           </NuxtLink>
 
           <NuxtLink
-            v-if="$auth.user.canManageTag"
+            v-if="$auth.can('manageTag')"
             :to="{
               name: 'admin-tags',
             }"
