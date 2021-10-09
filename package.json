@@ -24,6 +24,7 @@
     "create-file-list": "^1.1.0",
     "dayjs": "^1.10.7",
     "format-number": "^3.0.0",
+    "lodash": "^4.17.21",
     "nuxt": "^2.15.7",
     "nuxt-tailvue": "^1.0.91",
     "type-check": "^0.4.0",
