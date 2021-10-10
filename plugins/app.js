@@ -38,6 +38,43 @@ const rechargedCard = {
   },
 }
 
+const account = {
+  getStatusMeaning({ status }) {
+    switch (status) {
+      case 1:
+        return {
+          name: 'đang kiểm tra',
+          classes: 'bg-yellow-100 text-yellow-600',
+          color: 'yellow',
+        }
+      case 2:
+        return {
+          name: 'đang bán',
+          classes: 'bg-green-100 text-green-600',
+          color: 'green',
+        }
+      case 3:
+        return {
+          name: 'đã bán',
+          classes: 'bg-blue-100 text-blue-600',
+          color: 'blue',
+        }
+      case 4:
+        return {
+          name: 'sai thông tin',
+          classes: 'bg-red-100 text-red-600',
+          color: 'red',
+        }
+      default:
+        return {
+          name: 'không xác định',
+          classes: 'bg-gray-100 text-gray-600',
+          color: 'gray',
+        }
+    }
+  },
+}
+
 const tag = {
   getColor({ type }) {
     if (type === null) return 'gray'
@@ -53,6 +90,7 @@ export default async function ({ $axios, store }, inject) {
     findConfig,
     rechargedCard,
     tag,
+    account,
   })
 
   async function initApp() {

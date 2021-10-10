@@ -19,6 +19,7 @@ export default async function (
     refresh: initProfileInfo,
     updateBalance,
     can,
+    user,
   })
 
   /**
@@ -83,5 +84,10 @@ export default async function (
     return !!store.state.auth.profile?.[
       'can' + $string.capitalizeFirstLetter(ability)
     ]
+  }
+
+  function user(property = null) {
+    if (!property) return store.state.auth.profile
+    return store.state.auth.profile?.[property]
   }
 }

@@ -304,6 +304,28 @@
                           />
                           Nạp tiền
                         </NuxtLink>
+
+                        <NuxtLink
+                          :to="{ name: 'profile-bought-accounts' }"
+                          class="
+                            group
+                            flex
+                            items-center
+                            py-1.5
+                            hover:text-teal-600
+                          "
+                        >
+                          <IconsHistory
+                            class="
+                              size-xl
+                              flex-none
+                              mr-3
+                              text-gray-400
+                              group-hover:text-indigo-600
+                            "
+                          />
+                          Tài khoản đã mua
+                        </NuxtLink>
                       </div>
                       <!-- Group 2 -->
                       <div class="py-1.5 px-3.5">
@@ -509,6 +531,21 @@
                   "
                 >
                   Nạp tiền
+                </NuxtLink>
+                <NuxtLink
+                  :to="{ name: 'profile-bought-accounts' }"
+                  class="
+                    block
+                    px-4
+                    py-2
+                    text-base
+                    font-medium
+                    text-gray-500
+                    hover:text-gray-800
+                    hover:bg-gray-100
+                  "
+                >
+                  Tài khoản đã mua
                 </NuxtLink>
                 <a
                   href="#logout"
