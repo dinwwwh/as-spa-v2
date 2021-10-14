@@ -4,14 +4,7 @@
       Danh sách tài khoản đang bán của game {{ tag.name }}
     </HeadingsBase1>
 
-    <p
-      v-if="!accounts || accounts.length === 0"
-      class="text-gray-500 tracking-wider text-center"
-    >
-      Rất tiếc 😥😥😥 tất cả tài khoản hiện tại đều đã bán
-    </p>
-
-    <div v-else class="space-y-4">
+    <div class="space-y-4">
       <div class="flex justify-end">
         <InputsSearch
           v-model="search"
@@ -21,7 +14,14 @@
         />
       </div>
 
-      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      <p
+        v-if="!accounts || accounts.length === 0"
+        class="text-gray-500 tracking-wider text-center"
+      >
+        Rất tiếc 😥😥😥 tất cả tài khoản hiện tại đều đã bán
+      </p>
+
+      <div v-else class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         <AccountsCard
           v-for="account in accounts"
           :key="account.id"
@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import { debounce } from 'lodash'
+
 const axiosParams = {
   _perPage: 12,
   _relationships: ['mainImage', 'creator', 'tags'],
@@ -65,7 +67,7 @@ export default {
     }
   },
   methods: {
-    async onChangePage(page) {
+    onChangePage: debounce(async function (page) {
       const { data: accounts, meta } = await this.$axios.$get(
         `tags/${this.$route.params.slug}/accounts/selling`,
         {
@@ -79,8 +81,8 @@ export default {
 
       this.accounts = accounts
       this.meta = meta
-    },
-    async onChangeSearch(_search) {
+    }, 200),
+    onChangeSearch: debounce(async function (_search) {
       this.isSearching = true
       const { data: accounts, meta } = await this.$axios.$get(
         `tags/${this.$route.params.slug}/accounts/selling`,
@@ -95,7 +97,7 @@ export default {
       this.accounts = accounts
       this.meta = meta
       this.isSearching = false
-    },
+    }, 500),
   },
 }
 </script>
