@@ -181,6 +181,11 @@
 export default {
   layout: 'primary',
   middleware: ['auth'],
+  head() {
+    return {
+      title: 'Quản trị',
+    }
+  },
 }
 </script>
 

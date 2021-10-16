@@ -97,6 +97,11 @@ export default {
       gender: 'male',
     }
   },
+  head() {
+    return {
+      title: 'Đăng ký',
+    }
+  },
   validations() {
     const { required, email, sameAs, unique, minLength } = this.$vuelidate.rules
     const isUniqueUser = async (value) => {

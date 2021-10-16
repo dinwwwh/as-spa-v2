@@ -46,5 +46,10 @@ export default {
       showUpdateScreen: false,
     }
   },
+  head() {
+    return {
+      title: `Thông tin tài khoản #${this.accountInfo?.id}`,
+    }
+  },
 }
 </script>

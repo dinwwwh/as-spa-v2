@@ -6,6 +6,11 @@
 export default {
   layout: 'primary',
   middleware: 'auth',
+  head() {
+    return {
+      title: 'Cửa hàng của tôi',
+    }
+  },
 }
 </script>
 

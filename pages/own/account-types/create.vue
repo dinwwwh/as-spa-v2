@@ -11,5 +11,10 @@ export default {
       $auth.can('createAccountType') || error(403)
     },
   ],
+  head() {
+    return {
+      title: `Tạo kiểu tài khoản`,
+    }
+  },
 }
 </script>

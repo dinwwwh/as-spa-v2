@@ -24,5 +24,10 @@ export default {
       }
     },
   ],
+  head() {
+    return {
+      title: `Đăng tài khoản`,
+    }
+  },
 }
 </script>

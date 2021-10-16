@@ -23,5 +23,10 @@ export default {
       rechargedCard,
     }
   },
+  head() {
+    return {
+      title: `Thẻ nạp #${this.rechargedCard?.id}`,
+    }
+  },
 }
 </script>

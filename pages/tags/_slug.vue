@@ -66,6 +66,11 @@ export default {
       isSearching: false,
     }
   },
+  head() {
+    return {
+      title: this.tag?.name,
+    }
+  },
   methods: {
     onChangePage: debounce(async function (page) {
       const { data: accounts, meta } = await this.$axios.$get(

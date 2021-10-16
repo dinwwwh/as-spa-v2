@@ -143,6 +143,11 @@
 export default {
   layout: 'primary',
   middleware: ['auth'],
+  head() {
+    return {
+      title: 'Nạp tiền',
+    }
+  },
 }
 </script>
 

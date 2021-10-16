@@ -112,6 +112,11 @@
 export default {
   layout: 'primary',
   middleware: ['auth'],
+  head() {
+    return {
+      title: 'Hồ sơ',
+    }
+  },
 }
 </script>
 

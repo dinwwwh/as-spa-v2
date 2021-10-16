@@ -63,6 +63,11 @@ export default {
       remember: undefined,
     }
   },
+  head() {
+    return {
+      title: 'Đăng nhập',
+    }
+  },
   validations() {
     const { required } = this.$vuelidate.rules
 

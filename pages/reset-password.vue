@@ -83,6 +83,11 @@ export default {
       token: this.$route.query.token,
     }
   },
+  head() {
+    return {
+      title: 'Khôi phục mật khẩu',
+    }
+  },
   validations() {
     const { required, email, sameAs, minLength } = this.$vuelidate.rules
 

@@ -104,5 +104,10 @@ export default {
       isShowBuyerInfos: false,
     }
   },
+  head() {
+    return {
+      title: `Tài khoản #${this.account?.id}`,
+    }
+  },
 }
 </script>

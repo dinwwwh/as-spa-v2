@@ -77,5 +77,10 @@ export default {
       showCreateAccountInfo: false,
     }
   },
+  head() {
+    return {
+      title: `Kiểu tài khoản #${this.accountType?.id}`,
+    }
+  },
 }
 </script>

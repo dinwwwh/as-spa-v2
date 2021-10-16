@@ -38,6 +38,11 @@ export default {
       meta,
     }
   },
+  head() {
+    return {
+      title: `Danh sách kiểu tài khoản`,
+    }
+  },
   methods: {
     async onChangePage(page) {
       const { data: accountTypes, meta } = await this.$axios.$get(

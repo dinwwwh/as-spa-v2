@@ -149,6 +149,11 @@
 export default {
   layout: 'primary',
   middleware: ['auth'],
+  head() {
+    return {
+      title: 'Cá nhân',
+    }
+  },
 }
 </script>
 

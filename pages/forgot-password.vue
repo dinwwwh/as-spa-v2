@@ -64,6 +64,11 @@ export default {
       info: undefined,
     }
   },
+  head() {
+    return {
+      title: 'Quyên mật khẩu',
+    }
+  },
   validations() {
     return {
       email: {

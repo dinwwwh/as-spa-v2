@@ -54,6 +54,11 @@ export default {
       isSearching: false,
     }
   },
+  head() {
+    return {
+      title: 'Trang chủ',
+    }
+  },
   methods: {
     async onChangePage(page) {
       const { data: tags, meta } = await this.$axios.$get('tags', {
