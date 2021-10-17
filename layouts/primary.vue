@@ -23,8 +23,7 @@
                       _desktop-menu-item
                       border-transparent
                       text-gray-500
-                      hover:border-gray-300
-                      hover:text-gray-700
+                      hover:border-gray-300 hover:text-gray-700
                       inline-flex
                       items-center
                       px-1
@@ -44,8 +43,7 @@
                   items-center
                   justify-center
                   px-2
-                  lg:ml-6
-                  lg:justify-end
+                  lg:ml-6 lg:justify-end
                 "
               >
                 <div class="max-w-lg w-full lg:max-w-xs">
@@ -79,7 +77,8 @@
                         placeholder-gray-500
                         focus:outline-none
                         focus:placeholder-gray-400
-                        focus:ring-1 focus:ring-indigo-500
+                        focus:ring-1
+                        focus:ring-indigo-500
                         focus:border-indigo-500
                         sm:text-sm
                       "
@@ -103,10 +102,11 @@
                     p-2
                     rounded-md
                     text-gray-400
-                    hover:text-gray-500
-                    hover:bg-gray-100
+                    hover:text-gray-500 hover:bg-gray-100
                     focus:outline-none
-                    focus:ring-2 focus:ring-inset focus:ring-indigo-500
+                    focus:ring-2
+                    focus:ring-inset
+                    focus:ring-indigo-500
                   "
                   aria-controls="mobile-menu"
                   aria-expanded="false"
@@ -131,7 +131,9 @@
                     rounded-full
                     hover:text-gray-500
                     focus:outline-none
-                    focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                    focus:ring-2
+                    focus:ring-offset-2
+                    focus:ring-indigo-500
                   "
                 >
                   <span class="sr-only">View notifications</span>
@@ -150,7 +152,9 @@
                         flex
                         text-sm
                         focus:outline-none
-                        focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                        focus:ring-2
+                        focus:ring-offset-2
+                        focus:ring-indigo-500
                       "
                       aria-expanded="false"
                       aria-haspopup="true"
@@ -399,15 +403,16 @@
 
           <!-- Mobile menu, show/hide based on menu state. -->
           <div v-if="isShowMobileMenu" id="mobile-menu" class="lg:hidden">
-            <div class="pt-2 pb-3 space-y-1">
+            <div
+              class="pt-2 pb-3 space-y-1"
+              @click="isShowMobileMenu = !isShowMobileMenu"
+            >
               <NuxtLink
                 :to="{ name: 'index' }"
                 class="
                   _mobile-menu-item
                   text-gray-600
-                  hover:bg-gray-50
-                  hover:border-gray-300
-                  hover:text-gray-800
+                  hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800
                   block
                   pl-3
                   pr-4
@@ -462,14 +467,20 @@
                     rounded-full
                     hover:text-gray-500
                     focus:outline-none
-                    focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                    focus:ring-2
+                    focus:ring-offset-2
+                    focus:ring-indigo-500
                   "
+                  @click="isShowMobileMenu = !isShowMobileMenu"
                 >
                   <span class="sr-only">View notifications</span>
                   <IconsBell class="size-2xl" />
                 </button>
               </div>
-              <div class="mt-3 space-y-1">
+              <div
+                class="mt-3 space-y-1"
+                @click="isShowMobileMenu = !isShowMobileMenu"
+              >
                 <NuxtLink
                   v-if="canViewAdminPage"
                   :to="{ name: 'admin' }"
@@ -480,8 +491,7 @@
                     text-base
                     font-medium
                     text-gray-500
-                    hover:text-gray-800
-                    hover:bg-gray-100
+                    hover:text-gray-800 hover:bg-gray-100
                   "
                 >
                   Quản trị
@@ -496,8 +506,7 @@
                     text-base
                     font-medium
                     text-gray-500
-                    hover:text-gray-800
-                    hover:bg-gray-100
+                    hover:text-gray-800 hover:bg-gray-100
                   "
                 >
                   Cửa hàng của tôi
@@ -511,8 +520,7 @@
                     text-base
                     font-medium
                     text-gray-500
-                    hover:text-gray-800
-                    hover:bg-gray-100
+                    hover:text-gray-800 hover:bg-gray-100
                   "
                 >
                   Hồ sơ
@@ -526,8 +534,7 @@
                     text-base
                     font-medium
                     text-gray-500
-                    hover:text-gray-800
-                    hover:bg-gray-100
+                    hover:text-gray-800 hover:bg-gray-100
                   "
                 >
                   Nạp tiền
@@ -541,8 +548,7 @@
                     text-base
                     font-medium
                     text-gray-500
-                    hover:text-gray-800
-                    hover:bg-gray-100
+                    hover:text-gray-800 hover:bg-gray-100
                   "
                 >
                   Tài khoản đã mua
@@ -556,8 +562,7 @@
                     text-base
                     font-medium
                     text-gray-500
-                    hover:text-gray-800
-                    hover:bg-gray-100
+                    hover:text-gray-800 hover:bg-gray-100
                   "
                   @click="$auth.logout()"
                 >
@@ -567,7 +572,11 @@
             </div>
 
             <!-- For unauthenticated: login-register -->
-            <div v-else class="py-6 px-10 border-t border-gray-200">
+            <div
+              v-else
+              class="py-6 px-10 border-t border-gray-200"
+              @click="isShowMobileMenu = !isShowMobileMenu"
+            >
               <NuxtLink
                 :to="{ name: 'register' }"
                 class="
