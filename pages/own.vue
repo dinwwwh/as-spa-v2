@@ -9,8 +9,7 @@
               :to="{ name: 'own-account-types' }"
               class="
                 text-gray-700
-                hover:text-gray-800
-                hover:bg-gray-50
+                hover:text-gray-800 hover:bg-gray-50
                 group
                 rounded-md
                 px-3
@@ -40,8 +39,7 @@
               :to="{ name: 'own-account-types-create' }"
               class="
                 text-gray-700
-                hover:text-gray-800
-                hover:bg-gray-50
+                hover:text-gray-800 hover:bg-gray-50
                 group
                 rounded-md
                 px-3
@@ -69,15 +67,14 @@
           </nav>
         </div>
 
-        <!-- <div class="space-y-4">
-          <p class="text-sm text-gray-500 tracking-wide">Tài khoản</p>
+        <div v-if="$auth.can('createValidator')" class="space-y-4">
+          <p class="text-sm text-gray-500 tracking-wide">Xác minh</p>
           <nav class="space-y-1">
             <NuxtLink
-              :to="{ name: 'own-account-types' }"
+              :to="{ name: 'own-validators' }"
               class="
                 text-gray-700
-                hover:text-gray-800
-                hover:bg-gray-50
+                hover:text-gray-800 hover:bg-gray-50
                 group
                 rounded-md
                 px-3
@@ -104,11 +101,10 @@
             </NuxtLink>
 
             <NuxtLink
-              :to="{ name: 'own-account-types-create' }"
+              :to="{ name: 'own-validators-create' }"
               class="
                 text-gray-700
-                hover:text-gray-800
-                hover:bg-gray-50
+                hover:text-gray-800 hover:bg-gray-50
                 group
                 rounded-md
                 px-3
@@ -134,7 +130,7 @@
               <span class="truncate"> Tạo mới </span>
             </NuxtLink>
           </nav>
-        </div> -->
+        </div>
       </aside>
 
       <!-- Detail -->

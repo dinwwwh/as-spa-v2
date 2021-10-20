@@ -19,6 +19,7 @@ export default async function (
     refresh: initProfileInfo,
     updateBalance,
     can,
+    canRegex,
     user,
   })
 
@@ -84,6 +85,22 @@ export default async function (
     return !!store.state.auth.profile?.[
       'can' + $string.capitalizeFirstLetter(ability)
     ]
+  }
+
+  function canRegex(regex) {
+    const fields = store.state.auth.profile || {}
+    for (const filedKey in fields) {
+      if (!filedKey.startsWith('can') || fields[filedKey] === false) continue
+
+      // Remove can in field filedKey
+      const mutatedfiledKey = $string.toLowerCaseFirstLetter(
+        filedKey.replace('can', '')
+      )
+
+      if (regex.test(mutatedfiledKey)) return true
+    }
+
+    return false
   }
 
   function user(property = null) {

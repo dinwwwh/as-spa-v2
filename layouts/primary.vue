@@ -640,7 +640,7 @@ export default {
       return this.$store.state.auth.profile ?? {}
     },
     canViewAdminPage() {
-      return this.authProfile.canManageRechargedCard
+      return this.$auth.canRegex(/^manage/)
     },
   },
   mounted() {

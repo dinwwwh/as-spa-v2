@@ -10,8 +10,7 @@
             }"
             class="
               text-gray-700
-              hover:text-gray-800
-              hover:bg-gray-50
+              hover:text-gray-800 hover:bg-gray-50
               group
               rounded-md
               px-3
@@ -42,8 +41,7 @@
             }"
             class="
               text-gray-700
-              hover:text-gray-800
-              hover:bg-gray-50
+              hover:text-gray-800 hover:bg-gray-50
               group
               rounded-md
               px-3
@@ -75,8 +73,7 @@
             }"
             class="
               text-gray-700
-              hover:text-gray-800
-              hover:bg-gray-50
+              hover:text-gray-800 hover:bg-gray-50
               group
               rounded-md
               px-3
@@ -102,14 +99,45 @@
           </NuxtLink>
 
           <NuxtLink
+            v-if="$auth.can('manageValidator')"
+            :to="{
+              name: 'admin-validators',
+            }"
+            class="
+              text-gray-700
+              hover:text-gray-800 hover:bg-gray-50
+              group
+              rounded-md
+              px-3
+              py-2
+              flex
+              items-center
+              text-sm
+              font-medium
+            "
+          >
+            <IconsBadgeCheck
+              class="
+                text-gray-400
+                group-hover:text-gray-500
+                flex-shrink-0
+                -ml-1
+                mr-3
+                size-2xl
+                _icon
+              "
+            />
+            <span class="truncate"> Xác minh </span>
+          </NuxtLink>
+
+          <NuxtLink
             v-if="$auth.can('manageUser')"
             :to="{
               name: 'admin-users',
             }"
             class="
               text-gray-700
-              hover:text-gray-800
-              hover:bg-gray-50
+              hover:text-gray-800 hover:bg-gray-50
               group
               rounded-md
               px-3
@@ -141,8 +169,7 @@
             }"
             class="
               text-gray-700
-              hover:text-gray-800
-              hover:bg-gray-50
+              hover:text-gray-800 hover:bg-gray-50
               group
               rounded-md
               px-3
@@ -180,7 +207,12 @@
 <script>
 export default {
   layout: 'primary',
-  middleware: ['auth'],
+  middleware: [
+    'auth',
+    function ({ $auth, error }) {
+      if (!$auth.canRegex(/^manage/)) error(403)
+    },
+  ],
   head() {
     return {
       title: 'Quản trị',
