@@ -7,8 +7,7 @@
         py-12
         px-4
         sm:px-6
-        lg:flex-none
-        lg:px-20
+        lg:flex-none lg:px-20
         xl:px-24
       "
     >
@@ -151,7 +150,10 @@ export default {
       this.$nuxt.$emit('completeRegister')
 
       if (status < 300) {
-        this.$router.push('/')
+        this.$router.push({
+          name: 'login',
+        })
+        this.$notification.success('Bạn có thể đăng nhập ngay')
       }
     },
   },
