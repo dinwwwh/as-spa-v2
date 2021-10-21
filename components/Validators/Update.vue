@@ -52,7 +52,10 @@
         >
           Các thông tin cần cung cấp
           <template #description>
-            Là các thông tin nhạy cảm sẽ cung cấp cho người phê duyệt.
+            Nếu bạn cập nhật trường này thì tất cả những đối tượng (như kiểu tài
+            khoản, ...) sẽ bị xoá xác minh này (Bạn cần thêm lại nếu vẫn sử
+            dụng). Và tất cả những xác minh này đang được phê duyệt hoặc đang
+            chờ phê duyệt sẽ bị xoá (tương đương coi như thành công).
           </template>
         </SelectsMultipleTaggable>
 
@@ -64,7 +67,10 @@
         >
           Các thông tin cần cập nhật
           <template #description>
-            Là các thông tin nhạy cảm mà người phê duyệt cần cập nhật.
+            Nếu bạn cập nhật trường này thì tất cả những đối tượng (như kiểu tài
+            khoản, ...) sẽ bị xoá xác minh này (Bạn cần thêm lại nếu vẫn sử
+            dụng). Và tất cả những xác minh này đang được phê duyệt hoặc đang
+            chờ phê duyệt sẽ bị xoá (tương đương coi như thành công).
           </template>
         </SelectsMultipleTaggable>
 
