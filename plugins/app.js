@@ -82,6 +82,16 @@ const tag = {
   },
 }
 
+const validator = {
+  OTHER_TYPE: null,
+  CREATED_TYPE: 1,
+  UPDATED_TYPE: 2,
+  BOUGHT_TYPE: 3,
+  DAILY_TYPE: 4,
+  WEEKLY_TYPE: 5,
+  MONTHLY_TYPE: 6,
+}
+
 export default async function ({ $axios, store }, inject) {
   process.server && (await initApp())
 
@@ -91,6 +101,7 @@ export default async function ({ $axios, store }, inject) {
     rechargedCard,
     tag,
     account,
+    validator,
   })
 
   async function initApp() {

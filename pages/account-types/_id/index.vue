@@ -44,7 +44,10 @@
     </div>
 
     <Popups v-model="showUpdateScreen">
-      <AccountTypesUpdate v-model="accountType" class="shadow-none" />
+      <AccountTypesUpdate
+        :account-type-id="accountType.id"
+        class="!shadow-none"
+      />
     </Popups>
 
     <Popups v-model="showCreateAccountInfo">

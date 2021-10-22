@@ -17,7 +17,7 @@
           z-40
           flex
           bg-black
-          max-h-screen
+          min-h-screen
           overflow-y-auto
           pb-4
         "
@@ -25,9 +25,7 @@
       >
         <div
           class="
-            sm:align-middle
-            sm:min-w-max
-            sm:p-6
+            sm:align-middle sm:min-w-max sm:p-6
             inline-block
             px-4
             pt-5
@@ -46,13 +44,15 @@
             md:min-w-[460px]
           "
         >
-          <div class="sm:block absolute top-1 right-2 z-50">
+          <div class="sm:block absolute top-1 right-2 z-40">
             <button
               type="button"
               class="
                 hover:text-gray-500
                 focus:outline-none
-                focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-indigo-500
                 text-gray-400
                 bg-white
                 rounded-md
