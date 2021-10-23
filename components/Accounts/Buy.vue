@@ -11,7 +11,7 @@
       </MessagesInfo>
 
       <MessagesError v-else>
-        Tài khoản đã được bán hoặc bạn không đủ tiền
+        Tài khoản đang được kiểm tra, đã bán,... hoặc bạn không đủ tiền.
       </MessagesError>
     </div>
     <template #footer>
