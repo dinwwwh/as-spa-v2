@@ -52,36 +52,6 @@
             Là những người có thể sử dụng kiểu tài khoản này để đăng tài khoản.
           </template>
         </UsersSelectsMultiple>
-
-        <ValidatorsSelectMultipleForAccountType
-          v-model="createdValidators"
-          :account-type-id="accountTypeId"
-        >
-          Các bài kiểm tra khi tài khoản đăng lên
-          <template #description>
-            Kiểm tra theo đúng thứ tự từ trái qua phải
-          </template>
-        </ValidatorsSelectMultipleForAccountType>
-
-        <ValidatorsSelectMultipleForAccountType
-          v-model="updatedValidators"
-          :account-type-id="accountTypeId"
-        >
-          Các bài kiểm tra khi tài khoản cập nhật
-          <template #description>
-            Kiểm tra theo đúng thứ tự từ trái qua phải
-          </template>
-        </ValidatorsSelectMultipleForAccountType>
-
-        <ValidatorsSelectMultipleForAccountType
-          v-model="boughValidators"
-          :account-type-id="accountTypeId"
-        >
-          Các bài kiểm tra khi tài khoản được mua
-          <template #description>
-            Kiểm tra theo đúng thứ tự từ trái qua phải
-          </template>
-        </ValidatorsSelectMultipleForAccountType>
       </div>
     </div>
 
@@ -114,9 +84,6 @@ export default {
   data() {
     return {
       accountType: {},
-      createdValidators: [],
-      updatedValidators: [],
-      boughValidators: [],
     }
   },
   async fetch() {
@@ -125,22 +92,12 @@ export default {
       {
         params: {
           _abilities: true,
-          _relationships: ['tags', 'users', 'accountInfos', 'validators'],
+          _relationships: ['tags', 'users', 'accountInfos'],
         },
       }
     )
 
-    const { CREATED_TYPE, UPDATED_TYPE, BOUGHT_TYPE } = this.$app.validator
     this.accountType = accountType
-    this.createdValidators = accountType.validators.filter(
-      ({ pivot }) => pivot.type === CREATED_TYPE
-    )
-    this.updatedValidators = accountType.validators.filter(
-      ({ pivot }) => pivot.type === UPDATED_TYPE
-    )
-    this.boughValidators = accountType.validators.filter(
-      ({ pivot }) => pivot.type === BOUGHT_TYPE
-    )
   },
   validations() {
     const { required, minLength } = this.$vuelidate.rules
@@ -171,39 +128,9 @@ export default {
         return
       }
 
-      const { CREATED_TYPE, UPDATED_TYPE, BOUGHT_TYPE } = this.$app.validator
-      const createdValidators = this.createdValidators.map((validator) => ({
-        ...validator,
-        pivot: {
-          ...validator.pivot,
-          type: CREATED_TYPE,
-        },
-      }))
-      const updatedValidators = this.updatedValidators.map((validator) => ({
-        ...validator,
-        pivot: {
-          ...validator.pivot,
-          type: UPDATED_TYPE,
-        },
-      }))
-      const boughValidators = this.boughValidators.map((validator) => ({
-        ...validator,
-        pivot: {
-          ...validator.pivot,
-          type: BOUGHT_TYPE,
-        },
-      }))
-
       const { status } = await this.$axios.put(
         `account-types/${this.accountType.id}`,
-        {
-          ...this.accountType,
-          validators: [
-            ...createdValidators,
-            ...updatedValidators,
-            ...boughValidators,
-          ],
-        }
+        this.accountType
       )
       this.$nuxt.$emit('completeUpdateAccountType')
 

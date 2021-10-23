@@ -39,27 +39,31 @@ const rechargedCard = {
 }
 
 const account = {
+  CHECKING_STATUS: 1,
+  SELLING_STATUS: 2,
+  BOUGHT_STATUS: 3,
+  ERROR_STATUS: 4,
   getStatusMeaning({ status }) {
     switch (status) {
-      case 1:
+      case this.CHECKING_STATUS:
         return {
           name: 'đang kiểm tra',
           classes: 'bg-yellow-100 text-yellow-600',
           color: 'yellow',
         }
-      case 2:
+      case this.SELLING_STATUS:
         return {
           name: 'đang bán',
           classes: 'bg-green-100 text-green-600',
           color: 'green',
         }
-      case 3:
+      case this.BOUGHT_STATUS:
         return {
           name: 'đã bán',
           classes: 'bg-blue-100 text-blue-600',
           color: 'blue',
         }
-      case 4:
+      case this.ERROR_STATUS:
         return {
           name: 'sai thông tin',
           classes: 'bg-red-100 text-red-600',
@@ -82,7 +86,7 @@ const tag = {
   },
 }
 
-const validator = {
+const validatorable = {
   OTHER_TYPE: null,
   CREATED_TYPE: 1,
   UPDATED_TYPE: 2,
@@ -101,7 +105,7 @@ export default async function ({ $axios, store }, inject) {
     rechargedCard,
     tag,
     account,
-    validator,
+    validatorable,
   })
 
   async function initApp() {

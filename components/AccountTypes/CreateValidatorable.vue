@@ -41,12 +41,17 @@
       </div>
 
       <div v-if="currentStep === 2" class="space-y-6">
+        <Inputs v-model="order" type="number">
+          Thứ tự kiểm tra
+          <template #description> Càng nhỏ kiểm tra càng sớm </template>
+        </Inputs>
+
         <div class="space-y-4">
           <HeadingsBase3> Ánh sạ các trường xác minh có thể đọc </HeadingsBase3>
           <Selects
             v-for="field in selectedValidator.readableFields"
             :key="'read' + field"
-            v-model="selectedValidator.pivot.mappedReadableFields[field]"
+            v-model="mappedReadableFields[field]"
             :options="accountInfos"
             display-key="name"
             value-key="id"
@@ -62,7 +67,7 @@
           <Selects
             v-for="field in selectedValidator.updatableFields"
             :key="'update' + field"
-            v-model="selectedValidator.pivot.mappedUpdatableFields[field]"
+            v-model="mappedUpdatableFields[field]"
             :options="accountInfos"
             display-key="name"
             value-key="id"
@@ -78,6 +83,7 @@
         <Buttons
           v-if="currentStep === 2"
           color="green"
+          loading="completeAddValidatorable"
           @click="addNewValidator(selectedValidator)"
         >
           Thêm
@@ -93,19 +99,26 @@ import { debounce } from 'lodash'
 export default {
   props: {
     accountTypeId: {
-      type: [String, Number],
+      type: Number,
+      required: true,
+    },
+    type: {
+      type: Number,
       required: true,
     },
   },
   data() {
     return {
       currentStep: 1,
+      order: undefined,
       validators: [],
       selectedValidator: {},
       search: undefined,
       isSearching: false,
       meta: undefined,
       accountInfos: [],
+      mappedReadableFields: {},
+      mappedUpdatableFields: {},
     }
   },
   async fetch() {
@@ -165,18 +178,33 @@ export default {
         },
       }))
     },
-    addNewValidator(validator) {
+    async addNewValidator(validator) {
       if (
-        Object.keys(validator.pivot.mappedReadableFields).length <
+        Object.keys(this.mappedReadableFields).length <
           validator.readableFields.length ||
-        Object.keys(validator.pivot.mappedUpdatableFields).length <
+        Object.keys(this.mappedUpdatableFields).length <
           validator.updatableFields.length
       ) {
         this.$notification.error('Vui lòng kiểm tra lại thông tin')
+        this.$nuxt.$emit('completeAddValidatorable')
         return
       }
 
-      this.$emit('add', validator)
+      const { status, data } = await this.$axios.post(
+        `account-types/${this.accountTypeId}/validatorables/${this.selectedValidator.id}`,
+        {
+          type: this.type,
+          order: this.order,
+          mappedReadableFields: this.mappedReadableFields,
+          mappedUpdatableFields: this.mappedUpdatableFields,
+        }
+      )
+      this.$nuxt.$emit('completeAddValidatorable')
+
+      if (status < 300) {
+        this.$notification.success('Thêm thành công')
+        this.$emit('created', data.data)
+      }
     },
   },
 }
