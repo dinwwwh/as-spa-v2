@@ -64,7 +64,7 @@
           :key="'validatorable' + validatorable.id"
         >
           <div class="relative rounded">
-            <ValidatorsCard :validator="validatorable.validator" />
+            <ValidatorableCard :validatorable="validatorable" />
 
             <div
               class="
@@ -115,7 +115,7 @@
           :key="'validatorable' + validatorable.id"
         >
           <div class="relative rounded">
-            <ValidatorsCard :validator="validatorable.validator" />
+            <ValidatorableCard :validatorable="validatorable" />
 
             <div
               class="
@@ -166,7 +166,7 @@
           :key="'validatorable' + validatorable.id"
         >
           <div class="relative rounded">
-            <ValidatorsCard :validator="validatorable.validator" />
+            <ValidatorableCard :validatorable="validatorable" />
 
             <div
               class="
