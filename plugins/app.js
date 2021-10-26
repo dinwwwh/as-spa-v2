@@ -96,6 +96,52 @@ const validatorable = {
   MONTHLY_TYPE: 6,
 }
 
+const validation = {
+  getValidationableLink(validation) {
+    if (validation.validationableType === 'App\\Models\\Account') {
+      return {
+        name: 'tài khoản',
+        route: {
+          name: 'accounts-id',
+          params: {
+            id: validation.validationableId,
+          },
+        },
+      }
+    }
+
+    return undefined
+  },
+  getStatusMeaning(validation) {
+    if (validation.isApproving)
+      return {
+        name: 'đang phê duyệt',
+        color: 'yellow',
+        classes: 'bg-yellow-100 text-yellow-600',
+      }
+
+    if (validation.isError)
+      return {
+        name: 'thất bại',
+        color: 'red',
+        classes: 'bg-red-100 text-red-600',
+      }
+
+    if (validation.approverId)
+      return {
+        name: 'thành công',
+        color: 'green',
+        classes: 'bg-green-100 text-green-600',
+      }
+
+    return {
+      name: 'đang chờ',
+      color: 'blue',
+      classes: 'bg-blue-100 text-blue-600',
+    }
+  },
+}
+
 export default async function ({ $axios, store }, inject) {
   process.server && (await initApp())
 
@@ -106,6 +152,7 @@ export default async function ({ $axios, store }, inject) {
     tag,
     account,
     validatorable,
+    validation,
   })
 
   async function initApp() {

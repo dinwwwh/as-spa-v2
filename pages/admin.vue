@@ -131,6 +131,38 @@
           </NuxtLink>
 
           <NuxtLink
+            v-if="$auth.can('manageValidation')"
+            :to="{
+              name: 'admin-validations',
+            }"
+            class="
+              text-gray-700
+              hover:text-gray-800 hover:bg-gray-50
+              group
+              rounded-md
+              px-3
+              py-2
+              flex
+              items-center
+              text-sm
+              font-medium
+            "
+          >
+            <IconsBadgeCheck
+              class="
+                text-gray-400
+                group-hover:text-gray-500
+                flex-shrink-0
+                -ml-1
+                mr-3
+                size-2xl
+                _icon
+              "
+            />
+            <span class="truncate"> Bài xác minh </span>
+          </NuxtLink>
+
+          <NuxtLink
             v-if="$auth.can('manageUser')"
             :to="{
               name: 'admin-users',
