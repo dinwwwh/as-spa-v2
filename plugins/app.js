@@ -1,18 +1,18 @@
 const rechargedCard = {
   getStatus({ realFaceValue, faceValue, receivedValue, approverId }) {
-    if (!approverId && !realFaceValue && !receivedValue)
+    if (approverId === null)
       return {
         name: 'chờ duyệt',
         classes: 'bg-blue-100 text-blue-600',
       }
 
-    if (approverId && !realFaceValue && !receivedValue)
+    if (approverId && receivedValue === null)
       return {
         name: 'đang duyệt',
         classes: 'bg-yellow-100 text-yellow-600',
       }
 
-    if (approverId && realFaceValue && receivedValue) {
+    if (approverId && realFaceValue !== null && receivedValue !== null) {
       if (realFaceValue !== faceValue) {
         return {
           name: 'sai mệnh giá',
