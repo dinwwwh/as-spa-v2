@@ -243,6 +243,28 @@
                         </NuxtLink>
 
                         <NuxtLink
+                          :to="{ name: 'accounts-create' }"
+                          class="
+                            group
+                            flex
+                            items-center
+                            py-1.5
+                            hover:text-teal-600
+                          "
+                        >
+                          <IconsPlus
+                            class="
+                              size-xl
+                              flex-none
+                              mr-3
+                              text-gray-400
+                              group-hover:text-indigo-600
+                            "
+                          />
+                          Đăng tài khoản
+                        </NuxtLink>
+
+                        <NuxtLink
                           v-if="canViewAdminPage"
                           :to="{ name: 'my-shop' }"
                           class="
@@ -495,6 +517,20 @@
                   "
                 >
                   Quản trị
+                </NuxtLink>
+                <NuxtLink
+                  :to="{ name: 'accounts-create' }"
+                  class="
+                    block
+                    px-4
+                    py-2
+                    text-base
+                    font-medium
+                    text-gray-500
+                    hover:text-gray-800 hover:bg-gray-100
+                  "
+                >
+                  Đăng tài khoản
                 </NuxtLink>
                 <NuxtLink
                   v-if="canViewAdminPage"
