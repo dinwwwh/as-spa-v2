@@ -195,6 +195,38 @@
           </NuxtLink>
 
           <NuxtLink
+            v-if="$auth.can('manageAccountType')"
+            :to="{
+              name: 'admin-account-types',
+            }"
+            class="
+              text-gray-700
+              hover:text-gray-800 hover:bg-gray-50
+              group
+              rounded-md
+              px-3
+              py-2
+              flex
+              items-center
+              text-sm
+              font-medium
+            "
+          >
+            <IconsList
+              class="
+                text-gray-400
+                group-hover:text-gray-500
+                flex-shrink-0
+                -ml-1
+                mr-3
+                size-2xl
+                _icon
+              "
+            />
+            <span class="truncate">Kiểu tài khoản</span>
+          </NuxtLink>
+
+          <NuxtLink
             v-if="$auth.can('manageSetting')"
             :to="{
               name: 'admin-settings',
