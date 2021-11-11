@@ -38,46 +38,6 @@ const rechargedCard = {
   },
 }
 
-const account = {
-  CHECKING_STATUS: 1,
-  SELLING_STATUS: 2,
-  BOUGHT_STATUS: 3,
-  ERROR_STATUS: 4,
-  getStatusMeaning({ status }) {
-    switch (status) {
-      case this.CHECKING_STATUS:
-        return {
-          name: 'đang kiểm tra',
-          classes: 'bg-yellow-100 text-yellow-600',
-          color: 'yellow',
-        }
-      case this.SELLING_STATUS:
-        return {
-          name: 'đang bán',
-          classes: 'bg-green-100 text-green-600',
-          color: 'green',
-        }
-      case this.BOUGHT_STATUS:
-        return {
-          name: 'đã bán',
-          classes: 'bg-blue-100 text-blue-600',
-          color: 'blue',
-        }
-      case this.ERROR_STATUS:
-        return {
-          name: 'sai thông tin',
-          classes: 'bg-red-100 text-red-600',
-          color: 'red',
-        }
-      default:
-        return {
-          name: 'không xác định',
-          classes: 'bg-gray-100 text-gray-600',
-          color: 'gray',
-        }
-    }
-  },
-}
 
 const tag = {
   getColor({ type }) {
@@ -142,8 +102,61 @@ const validation = {
   },
 }
 
-export default async function ({ $axios, store }, inject) {
+export default async function ({ $axios, store, $dayjs }, inject) {
   process.server && (await initApp())
+
+const account = {
+  CHECKING_STATUS: 1,
+  SELLING_STATUS: 2,
+  BOUGHT_STATUS: 3,
+  ERROR_STATUS: 4,
+  getStatusMeaning({ status, confirmedAt }) {
+    switch (status) {
+      case this.CHECKING_STATUS:
+        return {
+          name: 'đang kiểm tra',
+          classes: 'bg-yellow-100 text-yellow-600',
+          color: 'yellow',
+        }
+      case this.SELLING_STATUS:
+        return {
+          name: 'đang bán',
+          classes: 'bg-green-100 text-green-600',
+          color: 'green',
+        }
+      case this.BOUGHT_STATUS:
+        if(confirmedAt === null)
+        return {
+          name: 'đang phê duyệt',
+          classes: 'bg-red-100 text-red-600',
+          color: 'red',
+        }
+        else if ($dayjs().isBefore(confirmedAt))
+        return {
+          name: 'đang bán',
+          classes: 'bg-blue-100 text-blue-600',
+          color: 'blue',
+        }
+        return {
+          name: 'đã bán',
+          classes: 'bg-green-100 text-green-600',
+          color: 'green',
+        }
+      case this.ERROR_STATUS:
+        return {
+          name: 'sai thông tin',
+          classes: 'bg-red-100 text-red-600',
+          color: 'red',
+        }
+      default:
+        return {
+          name: 'không xác định',
+          classes: 'bg-gray-100 text-gray-600',
+          color: 'gray',
+        }
+    }
+  },
+}
 
   inject('app', {
     refresh: initApp,

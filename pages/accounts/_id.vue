@@ -25,10 +25,45 @@
       </Buttons>
     </Groups>
 
+    <Groups v-if="account.canApprove" class="space-y-4">
+      <MessagesWarning>
+        Người mua muốn trả lại tài khoản này bạn có đồng ý và hoàn tiền?
+      </MessagesWarning>
+
+      <MessagesInfo>
+        Nếu bạn đồng ý tài khoản sẽ được đánh dấu là sai thông tin và hoàn trả
+        cho người đăng, vậy nên bạn nên cập nhật lại các thông tin quan trọng để
+        không ai biết được ngoài người đăng.
+      </MessagesInfo>
+
+      <Buttons
+        loading="completeApproveAccount"
+        color="yellow"
+        @click="approve(true)"
+      >
+        Đồng ý
+      </Buttons>
+      <Buttons
+        loading="completeApproveAccount"
+        color="green"
+        @click="approve(false)"
+      >
+        Không đồng ý
+      </Buttons>
+    </Groups>
+
     <!-- FOR BUYER -->
     <Groups v-if="$auth.user('id') === account.buyerId" class="space-y-6">
       <HeadingsBase3> Dành cho người mua tài khoản </HeadingsBase3>
       <Buttons color="yellow" @click="isShowBuyerInfos = !isShowBuyerInfos">
+        Xem thông tin tài khoản
+      </Buttons>
+    </Groups>
+
+    <!-- FOR CREATOR -->
+    <Groups v-if="$auth.user('id') === account.creatorId" class="space-y-6">
+      <HeadingsBase3> Dành cho người đăng tài khoản </HeadingsBase3>
+      <Buttons color="yellow" @click="isShowCreatorInfos = !isShowCreatorInfos">
         Xem thông tin tài khoản
       </Buttons>
     </Groups>
@@ -82,6 +117,10 @@
     <Popups v-model="isShowBuyerInfos">
       <AccountsBuyerInfos :account-id="account.id" class="shadow-none" />
     </Popups>
+
+    <Popups v-model="isShowCreatorInfos">
+      <AccountsCreatorInfos :account-id="account.id" class="shadow-none" />
+    </Popups>
   </div>
 </template>
 
@@ -102,12 +141,28 @@ export default {
       showUpdate: false,
       showBuy: false,
       isShowBuyerInfos: false,
+      isShowCreatorInfos: false,
     }
   },
   head() {
     return {
       title: `Tài khoản #${this.account?.id}`,
     }
+  },
+  methods: {
+    async approve(isRefunded) {
+      const { status } = await this.$axios.patch(
+        `accounts/${this.account.id}/approve`,
+        {
+          isRefunded,
+        }
+      )
+      this.$nuxt.$emit('completeApproveAccount')
+
+      if (status < 300) {
+        this.$notification.success('Phê duyệt tài khoản thành công')
+      }
+    },
   },
 }
 </script>
