@@ -4,7 +4,7 @@
       <!-- Account -->
       <NuxtLink
         :to="{
-          name: 'accounts-create',
+          name: 'my-accounts-create',
         }"
       >
         <Cards class="h-full">
@@ -17,7 +17,7 @@
       </NuxtLink>
       <NuxtLink
         :to="{
-          name: 'own-accounts',
+          name: 'my-accounts',
         }"
       >
         <Cards class="h-full">

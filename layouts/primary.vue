@@ -266,7 +266,7 @@
                         </NuxtLink>
 
                         <NuxtLink
-                          :to="{ name: 'accounts-create' }"
+                          :to="{ name: 'my-accounts-create' }"
                           class="
                             group
                             flex
@@ -557,7 +557,7 @@
                   Tạo kiểu tài khoản
                 </NuxtLink>
                 <NuxtLink
-                  :to="{ name: 'accounts-create' }"
+                  :to="{ name: 'my-accounts-create' }"
                   class="
                     block
                     px-4
