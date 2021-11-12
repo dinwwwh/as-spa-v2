@@ -47,7 +47,7 @@
     </AccountsCreate>
 
     <!-- Actions -->
-    <div class="flex items-center justify-end gap-3">
+    <div v-if="currentStep !== 2" class="flex items-center justify-end gap-3">
       <Buttons v-if="currentStep > 1" color="yellow" @click="backStep">
         Quai lại
       </Buttons>
