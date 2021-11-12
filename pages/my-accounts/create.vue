@@ -1,8 +1,14 @@
 <template>
-  <div class="space-y-8 my-12">
-    <HeadingsBase1> Chọn kiểu tài khoản sẽ đăng lên shop </HeadingsBase1>
+  <div class="space-y-6">
+    <StepsBullets
+      :current-step="currentStep"
+      :last-step="2"
+      @moved="moveTo($event)"
+    />
 
-    <div class="space-y-4">
+    <!-- Step 1: select account type -->
+    <div v-if="currentStep === 1" class="space-y-4">
+      <HeadingsBase3> Chọn kiểu tài khoản </HeadingsBase3>
       <div class="flex items-center justify-end">
         <InputsSearch
           v-model="params._search"
@@ -12,28 +18,11 @@
         />
       </div>
 
-      <ul v-if="accountTypes.length > 0" class="flex gap-4">
-        <li v-for="accountType in accountTypes" :key="accountType.id">
-          <NuxtLink
-            :to="{
-              name: 'account-types-id-accounts-create',
-              params: {
-                id: accountType.id,
-              },
-            }"
-          >
-            <Groups>
-              <HeadingsBase5> {{ accountType.name }} </HeadingsBase5>
-              <Badges
-                v-for="tag in accountType.tags"
-                :key="accountType.id + tag.slug"
-              >
-                {{ tag.name }}
-              </Badges>
-            </Groups>
-          </NuxtLink>
-        </li>
-      </ul>
+      <AccountTypesSelects
+        v-if="accountTypes.length > 0"
+        v-model="selectedAccountType"
+        :account-types="accountTypes"
+      />
 
       <div v-else class="text-center tracking-wider text-gray-500">
         Có vẻ như bạn không có quyên sử dụng bất cứ loại tài khoản nào.
@@ -45,6 +34,27 @@
         :last-page="meta.lastPage"
         @model="onPageChange"
       />
+    </div>
+
+    <!-- Step 2: supply account infos -->
+    <AccountsCreate
+      v-if="currentStep === 2 && selectedAccountType.id"
+      :account-type-id="parseInt(selectedAccountType.id)"
+    >
+      <template #actions>
+        <Buttons color="yellow" @click="backStep"> Quai lại </Buttons>
+      </template>
+    </AccountsCreate>
+
+    <!-- Actions -->
+    <div class="flex items-center justify-end gap-3">
+      <Buttons v-if="currentStep > 1" color="yellow" @click="backStep">
+        Quai lại
+      </Buttons>
+
+      <Buttons v-if="currentStep < 2" color="green" @click="nextStep">
+        Tiếp túc
+      </Buttons>
     </div>
   </div>
 </template>
@@ -73,6 +83,18 @@ export default {
       params,
       meta,
       isSearching: false,
+      selectedAccountType: undefined,
+      currentStep: 1,
+    }
+  },
+  validations() {
+    const { required } = this.$vuelidate.rules
+
+    return {
+      selectedAccountType: {
+        required,
+      },
+      step1: ['selectedAccountType'],
     }
   },
   head() {
@@ -108,6 +130,32 @@ export default {
       this.accountTypes = accountTypes
       this.meta = meta
     }, 500),
+    nextStep() {
+      if (this.currentStep === 1) {
+        this.$v.step1.$touch()
+
+        if (this.$v.step1.$invalid) {
+          this.$notification.error('Vui lòng kiểm tra lại thông tin')
+          return
+        }
+      }
+
+      this.currentStep++
+    },
+    backStep() {
+      this.currentStep--
+    },
+    moveTo(step) {
+      const gap = step - this.currentStep
+
+      for (let i = 1; i <= Math.abs(gap); i++) {
+        if (gap > 0) {
+          this.nextStep()
+        } else {
+          this.backStep()
+        }
+      }
+    },
   },
 }
 </script>

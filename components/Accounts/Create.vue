@@ -102,7 +102,8 @@
     </div>
 
     <template v-if="!$fetchState.pending" #footer>
-      <div class="flex items-center justify-end">
+      <div class="flex items-center justify-end gap-3">
+        <slot name="actions" />
         <Buttons color="green" loading="completeCreateAccount" @click="create">
           Tạo
         </Buttons>
