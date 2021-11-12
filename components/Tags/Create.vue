@@ -34,6 +34,10 @@
           Mô tả
         </Textareas>
 
+        <InputsCircleFile v-model="tag.mainImage">
+          Ảnh chính <span class="text-xs font-light">(không bắt buộc)</span>
+        </InputsCircleFile>
+
         <TagsSelectsSingle
           v-model="tag.parent"
           :error="$v.tag.parent"
@@ -102,12 +106,15 @@ export default {
         return
       }
 
-      const { status, data } = await this.$axios.post('tags', {
-        ...this.tag,
-        _abilities: true,
-        _computed: true,
-        _relationships: ['parent'],
-      })
+      const { status, data } = await this.$axios.post(
+        'tags',
+        this.$formData({
+          ...this.tag,
+          _abilities: true,
+          _computed: true,
+          _relationships: ['parent'],
+        })
+      )
       this.$nuxt.$emit('completeCreateTag')
 
       if (status < 300) {

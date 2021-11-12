@@ -1,8 +1,9 @@
 <template>
   <div class="rounded bg-white shadow overflow-hidden">
-    <div>
-      <img src="https://picsum.photos/id/237/1080/1080" alt="image" />
-    </div>
+    <div
+      class="pt-[66%] bg-center bg-cover"
+      :style="`background-image: url(${tag.mainImageUrl})`"
+    ></div>
     <div class="flex justify-end py-4 px-2">
       <HeadingsBase4> {{ tag.name }} </HeadingsBase4>
     </div>

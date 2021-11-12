@@ -38,6 +38,7 @@ import { debounce } from 'lodash'
 const params = {
   _perPage: 12,
   type: 1,
+  _computed: true,
 }
 
 export default {
