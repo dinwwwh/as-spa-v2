@@ -69,20 +69,28 @@
     </Groups>
 
     <div class="grid md:grid-cols-5 gap-6">
-      <Groups class="space-y-6 md:col-span-3">
-        <div class="flex gap-3 flex-wrap">
-          <TagsBadgesLarge
-            v-for="tag in account.tags"
-            :key="'tag' + tag.slug"
-            :tag="tag"
-          />
-        </div>
-        <p class="text-gray-800">{{ account.description }}</p>
-        <p class="text-yellow-500 flex gap-2 items-end text-xl tracking-wider">
-          {{ $number.format(account.price) }}
-          <AppBalance />
-        </p>
-      </Groups>
+      <div class="space-y-4 md:col-span-3">
+        <Groups class="space-y-6">
+          <div class="flex gap-3 flex-wrap">
+            <TagsBadgesLarge
+              v-for="tag in account.tags"
+              :key="'tag' + tag.slug"
+              :tag="tag"
+            />
+          </div>
+          <p class="text-gray-800">{{ account.description }}</p>
+          <p
+            class="text-yellow-500 flex gap-2 items-end text-xl tracking-wider"
+          >
+            {{ $number.format(account.price) }}
+            <AppBalance />
+          </p>
+        </Groups>
+        <CommentSections
+          :commentable-type="$app.account.morphClass"
+          :commentable-id="account.id"
+        />
+      </div>
 
       <Groups class="md:col-span-2 space-y-2">
         <HeadingsBase3> Khi mua bạn sẽ nhận được </HeadingsBase3>

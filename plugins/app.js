@@ -110,6 +110,7 @@ const account = {
   SELLING_STATUS: 2,
   BOUGHT_STATUS: 3,
   ERROR_STATUS: 4,
+  morphClass: 'App\\Models\\Account',
   getStatusMeaning({ status, confirmedAt }) {
     switch (status) {
       case this.CHECKING_STATUS:
