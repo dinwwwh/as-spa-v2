@@ -81,6 +81,7 @@ export default {
         _commentableType: this.commentableType,
         _relationships: ['creator'],
         _computed: true,
+        _orderBy: 'asc',
       },
       content: undefined,
       comments: [],
