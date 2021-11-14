@@ -29,6 +29,7 @@
     "nuxt-tailvue": "^1.0.91",
     "type-check": "^0.4.0",
     "validator": "^13.6.0",
+    "vue-fb-customer-chat": "^0.2.0",
     "vue-multiselect": "^2.1.6",
     "vuedraggable": "^2.24.3",
     "vuelidate": "^0.7.6",

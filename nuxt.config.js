@@ -39,6 +39,7 @@ export default {
     '~/plugins/laravel-sanctum',
     '~/plugins/app',
     '~/plugins/auth',
+    '~/plugins/vue-fb-customer-chat.client'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
