@@ -1,6 +1,5 @@
 <template>
   <div class="space-y-4">
-    <!-- // ! Current laravel scout with algolia can't handle search for this case
     <div class="flex items-center justify-end">
       <InputsSearch
         v-model="params._search"
@@ -8,7 +7,7 @@
         :loading="isSearching"
         @model="onSearchChange"
       />
-    </div> -->
+    </div>
 
     <AccountsTable :accounts="accounts" />
 
