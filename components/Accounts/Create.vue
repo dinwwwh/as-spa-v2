@@ -178,7 +178,7 @@ export default {
         status,
         data: { data: account },
       } = await this.$axios.post(
-        `account-types/${this.$route.params.id}/accounts`,
+        `account-types/${this.accountTypeId}/accounts`,
         this.$formData({
           description: this.account.description,
           cost: this.account.cost,
