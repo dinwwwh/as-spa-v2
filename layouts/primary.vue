@@ -694,7 +694,7 @@
       </main>
     </div>
 
-    <footer></footer>
+    <Footers />
   </div>
 </template>
 
